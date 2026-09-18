@@ -6,7 +6,10 @@ const root = path.resolve(process.argv[2] ?? '.');
 const protocolRoot = path.join(root, 'native/kubeshell-kubectl/internal/protocol');
 const contractPath = path.join(protocolRoot, 'contract-v1.json');
 const contractBytes = fs.readFileSync(contractPath);
-const contract = JSON.parse(contractBytes.toString('utf8'));
+// Git may materialize text files with CRLF on Windows. The protocol hash is defined
+// over the repository's canonical LF representation so checkout policy cannot change it.
+const canonicalContractBytes = Buffer.from(contractBytes.toString('utf8').replace(/\r\n?/g, '\n'), 'utf8');
+const contract = JSON.parse(canonicalContractBytes.toString('utf8'));
 const goProtocol = fs.readFileSync(path.join(protocolRoot, 'types.go'), 'utf8');
 const goFrame = fs.readFileSync(path.join(protocolRoot, 'frame.go'), 'utf8');
 const goContract = fs.readFileSync(path.join(protocolRoot, 'contract.go'), 'utf8');
@@ -45,7 +48,7 @@ function capture(text, regex, label) {
   return match[1];
 }
 
-const expectedHash = crypto.createHash('sha256').update(contractBytes).digest('hex');
+const expectedHash = crypto.createHash('sha256').update(canonicalContractBytes).digest('hex');
 const goHash = capture(goContract, /ContractHash\s*=\s*"([0-9a-f]{64})"/, 'Go contract hash');
 const csHash = capture(csProtocol, /ContractHash\s*=\s*"([0-9a-f]{64})"/, 'C# contract hash');
 if (goHash !== expectedHash || csHash !== expectedHash)
