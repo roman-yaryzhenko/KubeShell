@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>KubeShell.KubectlProcess</AssemblyName>
+    <RootNamespace>KubeShell.Backends.KubectlProcess</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Runtime/KubeShell.Runtime/KubeShell.Runtime.csproj" />
+  </ItemGroup>
+</Project>

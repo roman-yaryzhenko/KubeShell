@@ -1,0 +1,28 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "api",
+    "namespace": "demo",
+    "creationTimestamp": "2026-09-11T05:00:00Z",
+    "uid": "fixture-uid",
+    "resourceVersion": "42"
+  },
+  "spec": {
+    "replicas": 3,
+    "selector": { "matchLabels": { "app": "api" } },
+    "template": {
+      "metadata": { "labels": { "app": "api" } },
+      "spec": {
+        "containers": [
+          { "name": "api", "image": "example/api:v1" }
+        ]
+      }
+    }
+  },
+  "status": {
+    "readyReplicas": 3,
+    "availableReplicas": 3,
+    "updatedReplicas": 3
+  }
+}

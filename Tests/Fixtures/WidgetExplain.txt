@@ -1,0 +1,19 @@
+KIND:     Widget
+VERSION:  example.io/v1
+
+DESCRIPTION:
+    Example CRD used by cluster-free tests.
+
+FIELDS:
+  apiVersion	<string>
+  kind	<string>
+  metadata	<ObjectMeta>
+    name	<string>
+    namespace	<string>
+  spec	<Object>
+    replicas	<integer>
+    template	<Object>
+      image	<string>
+      ports	<[]integer>
+  status	<Object>
+    ready	<boolean>

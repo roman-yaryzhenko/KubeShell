@@ -1,0 +1,10 @@
+@{
+    RootModule='KubeShell.Resources.psm1'
+    ModuleVersion='0.3.0'
+    GUID='991dba0c-12bf-4c51-885d-2c3444744aae'
+    PowerShellVersion='7.4'
+    FunctionsToExport='*'
+    CmdletsToExport=@()
+    AliasesToExport=@()
+    VariablesToExport=@()
+}

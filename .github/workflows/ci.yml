@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts
+      - run: npm run test:static
+
+  powershell:
+    strategy:
+      fail-fast: false
+      matrix:
+        dotnet: ['8.0.x', '10.0.x']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      - name: Install Pester
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -MinimumVersion 5.5.0 -Scope CurrentUser -Force -SkipPublisherCheck
+      - name: Run cluster-free suites
+        shell: pwsh
+        run: ./Tests/Run.ps1 -RequirePester
+      - name: Compile and import portable provider
+        shell: pwsh
+        run: |
+          ./Optional/KubeShell.Provider/build.ps1
+          Import-Module ./Optional/KubeShell.Provider/KubeShell.Provider.psd1 -Force
+          Get-PSProvider Kube | Out-Null
+
+  kubectl-host:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: native/kubeshell-kubectl/host/go.mod
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test transport-independent IPC protocol/server
+        working-directory: native/kubeshell-kubectl
+        run: go test ./internal/protocol ./internal/server
+      - name: Compile/test kubectl host against pinned upstream modules
+        working-directory: native/kubeshell-kubectl/host
+        run: go test ./...
+      - name: Build managed IPC backend and packaged host
+        shell: pwsh
+        run: ./Backends/KubeShell.Kubectl/build.ps1 -BuildHost
+      - name: Audit cross-language protocol contract
+        run: node ./Tests/KubectlProtocolAudit.mjs .

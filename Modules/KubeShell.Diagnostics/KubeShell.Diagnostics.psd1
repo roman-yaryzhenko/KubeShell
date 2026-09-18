@@ -1,0 +1,10 @@
+@{
+    RootModule='KubeShell.Diagnostics.psm1'
+    ModuleVersion='0.3.0'
+    GUID='8c659f62-e224-4264-9e8a-1251330e452b'
+    PowerShellVersion='7.4'
+    FunctionsToExport='*'
+    CmdletsToExport=@()
+    AliasesToExport=@()
+    VariablesToExport=@()
+}

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>KubeShell.Provider</AssemblyName>
+    <RootNamespace>KubeShell.Provider</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Runtime/KubeShell.Runtime/KubeShell.Runtime.csproj" />
+    <ProjectReference Include="../../ObjectModel/KubeShell.ObjectModel/KubeShell.ObjectModel.csproj" />
+    <ProjectReference Include="../../Hosting/KubeShell.Hosting/KubeShell.Hosting.csproj" />
+    <!-- PowerShell Standard is the compile-time API contract for an in-process binary module.
+         The running PowerShell supplies System.Management.Automation; no host runtime is bundled. -->
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

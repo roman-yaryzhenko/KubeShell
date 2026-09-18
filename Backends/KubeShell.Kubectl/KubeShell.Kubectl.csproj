@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>KubeShell.Kubectl</AssemblyName>
+    <RootNamespace>KubeShell.Backends.Kubectl</RootNamespace>
+    <Version>0.3.0-alpha11</Version>
+    <Description>KubeShell kubectl-faithful IPC backend</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Runtime/KubeShell.Runtime/KubeShell.Runtime.csproj" />
+  </ItemGroup>
+</Project>

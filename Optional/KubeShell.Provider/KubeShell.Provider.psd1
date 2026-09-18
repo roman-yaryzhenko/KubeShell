@@ -1,0 +1,10 @@
+@{
+    RootModule='bin/Release/net8.0/KubeShell.Provider.dll'
+    ModuleVersion='0.3.0'
+    GUID='ccba8f70-2ad4-49d4-ae92-c9373ece2e7a'
+    PowerShellVersion='7.4'
+    CmdletsToExport=@()
+    FunctionsToExport=@()
+    AliasesToExport=@()
+    VariablesToExport=@()
+}

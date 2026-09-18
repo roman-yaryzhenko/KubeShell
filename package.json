@@ -1,0 +1,25 @@
+{
+  "name": "kubeshell-development",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:syntax": "node ./Tests/SyntaxTree.mjs .",
+    "test:verbs": "node ./Tests/VerbAudit.mjs .",
+    "test:static": "npm run test:clean && npm run test:layout && npm run test:syntax && npm run test:verbs && npm run test:architecture && npm run test:routing && npm run test:kubectl-protocol && npm run test:provider-objectmodel && npm run test:package",
+    "test:architecture": "node ./Tests/ArchitectureAudit.mjs .",
+    "test:kubectl-protocol": "node ./Tests/KubectlProtocolAudit.mjs .",
+    "test:clean": "node ./Tests/CleanArchitectureAudit.mjs .",
+    "test:layout": "node ./Tests/ModuleLayoutAudit.mjs .",
+    "test:routing": "node ./Tests/BackendRoutingAudit.mjs .",
+    "test:provider-objectmodel": "node ./Tests/ProviderObjectModelAudit.mjs .",
+    "test:package": "node ./Tests/PackageAudit.mjs ."
+  },
+  "devDependencies": {
+    "tree-sitter": "0.25.1",
+    "tree-sitter-pwsh": "0.38.1"
+  },
+  "version": "0.3.0-alpha11",
+  "engines": {
+    "node": ">=22"
+  }
+}

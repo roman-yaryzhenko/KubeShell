@@ -1,0 +1,46 @@
+{
+  "apiVersion": "v1",
+  "kind": "PodList",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "web-7f6d8d9c8b-a1b2c",
+        "namespace": "demo",
+        "creationTimestamp": "2026-09-11T06:00:00Z"
+      },
+      "spec": {
+        "nodeName": "node-a",
+        "containers": [
+          { "name": "web", "image": "example/web:v1" }
+        ]
+      },
+      "status": {
+        "phase": "Running",
+        "containerStatuses": [
+          { "name": "web", "ready": true, "restartCount": 1 }
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "web-7f6d8d9c8b-d4e5f",
+        "namespace": "demo",
+        "creationTimestamp": "2026-09-11T06:01:00Z"
+      },
+      "spec": {
+        "nodeName": "node-b",
+        "containers": [
+          { "name": "web", "image": "example/web:v1" }
+        ]
+      },
+      "status": {
+        "phase": "Pending",
+        "containerStatuses": []
+      }
+    }
+  ]
+}

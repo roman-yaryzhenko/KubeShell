@@ -1,0 +1,22 @@
+{
+  "all": [
+    {"group":"apps.example.com","version":"v1alpha1","resource":"widgets","kind":"Widget","singular":"widget","shortNames":["wdg"],"namespaced":true,"verbs":["get","list","patch"]},
+    {"group":"apps.example.com","version":"v1","resource":"widgets","kind":"Widget","singular":"widget","shortNames":["wdg"],"namespaced":true,"verbs":["get","list","patch"]},
+    {"group":"apps.example.com","version":"v1alpha1","resource":"legacywidgets","kind":"LegacyWidget","singular":"legacywidget","shortNames":["lwdg"],"namespaced":true,"verbs":["get","list"]},
+    {"group":"one.example.com","version":"v1","resource":"ones","kind":"One","singular":"one","shortNames":["same"],"namespaced":true,"verbs":["get","list"]},
+    {"group":"two.example.com","version":"v1","resource":"twos","kind":"Two","singular":"two","shortNames":["same"],"namespaced":true,"verbs":["get","list"]}
+  ],
+  "preferred": [
+    {"group":"apps.example.com","version":"v1","resource":"widgets","kind":"Widget","singular":"widget","shortNames":["wdg"],"namespaced":true,"verbs":["get","list","patch"]},
+    {"group":"one.example.com","version":"v1","resource":"ones","kind":"One","singular":"one","shortNames":["same"],"namespaced":true,"verbs":["get","list"]},
+    {"group":"two.example.com","version":"v1","resource":"twos","kind":"Two","singular":"two","shortNames":["same"],"namespaced":true,"verbs":["get","list"]}
+  ],
+  "apiResourceList": {
+    "groupVersion":"apps/v1",
+    "resources":[
+      {"name":"pods/status","kind":"Pod","namespaced":true,"verbs":["get"]},
+      {"name":"deployments","singularName":"deployment","kind":"Deployment","namespaced":true,"verbs":["get","list","patch"],"shortNames":["deploy"]},
+      {"name":"deployments/status","kind":"Deployment","namespaced":true,"verbs":["get"]}
+    ]
+  }
+}
