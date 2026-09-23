@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 
 BeforeAll {
     $script:ContractEvidenceScript = Join-Path $PSScriptRoot 'ContractEvidence.ps1'
-    $script:ContractMatrixPath = Join-Path $PSScriptRoot '../docs/CONTRACT-VERIFICATION-MATRIX-V1.md'
+    $script:ContractMatrixPath = Join-Path $PSScriptRoot '../docs/generated/llm/CONTRACT-VERIFICATION-MATRIX-V1.md'
 
     function New-CompleteContractEvidence {
         $evidence = @{
